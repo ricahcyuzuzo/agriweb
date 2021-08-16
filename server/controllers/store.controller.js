@@ -31,6 +31,24 @@ class StoreController {
         });
     }
 
+    static getAllProductByName (req, res){
+        const {name} = req.query;
+        Product.find({productName: name}, (err, docs) => {
+            if(docs){
+                res.status(200).json({
+                    status: 200,
+                    message: 'Ok',
+                    data: docs
+                });
+            }else{
+                res.status(404).json({
+                    status: 404,
+                    message: 'Not Found'
+                })
+            }
+        })
+    }
+
     static getOneProduct(req, res){
         const { product_id } = req.body;
         Product.findById(product_id, (err, docs) => {
