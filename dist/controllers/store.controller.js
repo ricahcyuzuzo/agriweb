@@ -58,6 +58,28 @@ var StoreController = /*#__PURE__*/function () {
       });
     }
   }, {
+    key: "getAllProductByName",
+    value: function getAllProductByName(req, res) {
+      var name = req.query.name;
+
+      _products["default"].find({
+        productName: name
+      }, function (err, docs) {
+        if (docs) {
+          res.status(200).json({
+            status: 200,
+            message: 'Ok',
+            data: docs
+          });
+        } else {
+          res.status(404).json({
+            status: 404,
+            message: 'Not Found'
+          });
+        }
+      });
+    }
+  }, {
     key: "getOneProduct",
     value: function getOneProduct(req, res) {
       var product_id = req.body.product_id;

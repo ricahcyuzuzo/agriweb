@@ -15,6 +15,6 @@ var routes = (0, _express["default"])();
 routes.get('/products_approved', _store["default"].getAllProductsByCategories);
 routes.get('/product', _store["default"].getOneProduct);
 routes.post('/add_to_cart', _store["default"].addToCart);
-routes.get('/get_cart', _store["default"].getCartbyUserId);
+routes.get('/getname', _store["default"].getAllProductByName);
 var _default = routes;
 exports["default"] = _default;
