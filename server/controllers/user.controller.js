@@ -5,6 +5,16 @@ import UserBodyModels from "../models/body/userBody.model";
 import User from "../models/db/users.model";
 
 class UserController{
+    static getOne (req, res){
+        const {phone} = req.query;
+        User.findOne({phoneNumber: phone}, (err, docs) => {
+            res.status(200).json({
+                status: 200,
+                data: docs
+            })
+        })
+    }
+
     static signup (req, res) {
         const { fullNames ,phoneNumber, password, userType } = req.body;
         const { error } = validateUser.validateUserSignup(UserBodyModels.userSignupBody(req));
