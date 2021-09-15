@@ -89,17 +89,18 @@ class SellerController {
     static getProfile(req, res) {
         const { telephone } = req.query;
         User.find({ phoneNumber: telephone }, (err, docs) => {
-            if(docs.length){
-                res.status(200).json({
-                    status: 200,
-                    data: docs
-                })
-            }else{
-                res.status(404).json({
-                    status: 404,
-                    message: 'User not found'
-                })
-            }
+            console.log(docs)
+            // if(docs.length){
+            //     res.status(200).json({
+            //         status: 200,
+            //         data: docs
+            //     })
+            // }else{
+            //     res.status(404).json({
+            //         status: 404,
+            //         message: 'User not found'
+            //     })
+            // }
         });
     }
 

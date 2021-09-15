@@ -7,6 +7,7 @@ import sellerRoutes from './routes/seller.route';
 import adminRoutes from './routes/admin.route';
 import storeRoutes from './routes/store.route';
 import TransactionRoutes from './routes/transaction.routes';
+import forumRoutes from './routes/forum.routes';
 
 const app = express();
 const port = process.env.PORT || 7000;
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
     return next();
 });
 
+app.use('/api', forumRoutes);
 app.use('/api', userRoutes);
 app.use('/api', sellerRoutes);
 app.use('/api', adminRoutes);
