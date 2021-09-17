@@ -1,20 +1,10 @@
 import Mongoose from "mongoose";
-import validateProduct from "../helpers/userValidations/validateProduct";
-import productsBodyModels from "../models/body/productBody.model";
-import Product from "../models/db/products.model";
+import Product from "../models/product.model";
 import User from "../models/db/users.model";
 
 class SellerController {
     static addProduct (req, res) {
         const { productName, pricePerUnit, availableQuantity, description, sellerIdentifier, productCategory, image} = req.body;
-        const { error } = validateProduct.validateAddProduct(productsBodyModels.productsBodymodel(req));
-        
-        if (error) {
-            return res.status(400).json({
-                status: 400,
-                message: error.details[0].message.replace(/"/g, '')
-            });
-        }
 
         const product = new Product({
             _id: new Mongoose.Types.ObjectId(),

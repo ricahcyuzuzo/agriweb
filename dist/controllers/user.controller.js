@@ -9,11 +9,7 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _authenticate = _interopRequireDefault(require("../helpers/authenticate"));
 
-var _validateUser = _interopRequireDefault(require("../helpers/userValidations/validateUser"));
-
-var _userBody = _interopRequireDefault(require("../models/body/userBody.model"));
-
-var _users = _interopRequireDefault(require("../models/db/users.model"));
+var _user = _interopRequireDefault(require("../models/user.model"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -33,7 +29,7 @@ var UserController = /*#__PURE__*/function () {
     value: function getOne(req, res) {
       var phone = req.query.phone;
 
-      _users["default"].findOne({
+      _user["default"].findOne({
         phoneNumber: phone
       }, function (err, docs) {
         res.status(200).json({
@@ -51,55 +47,38 @@ var UserController = /*#__PURE__*/function () {
           password = _req$body.password,
           userType = _req$body.userType;
 
-      var _validateUser$validat = _validateUser["default"].validateUserSignup(_userBody["default"].userSignupBody(req)),
-          error = _validateUser$validat.error;
-
-      if (error) {
-        return res.status(400).json({
-          status: 400,
-          message: error.details[0].message.replace(/"/g, '')
-        });
-      }
-
-      if (_validateUser["default"].validatePassword(password) === true) {
-        _users["default"].find({
-          phoneNumber: phoneNumber
-        }, function (err, docs) {
-          if (docs.length) {
-            return res.status(409).json({
-              status: 409,
-              message: "Phone number is already used, please try with another phone number"
-            });
-          } // console.log('posted')
-
-
-          var hashedPassword = _authenticate["default"].hashPassword(password);
-
-          var user = new _users["default"]({
-            _id: new _mongoose["default"].Types.ObjectId(),
-            fullNames: fullNames,
-            phoneNumber: phoneNumber,
-            password: hashedPassword,
-            type: userType
+      _user["default"].find({
+        phoneNumber: phoneNumber
+      }, function (err, docs) {
+        if (docs.length) {
+          return res.status(409).json({
+            status: 409,
+            message: "Phone number is already used, please try with another phone number"
           });
-          user.save().then(function (result) {
-            console.log(result);
-          })["catch"](function (error) {
-            console.log(error);
-          });
-          res.status(201).json({
-            status: 201,
-            message: 'You have been registed successfull',
-            createdUser: user,
-            token: _authenticate["default"].generateToken(user)
-          });
+        } // console.log('posted')
+
+
+        var hashedPassword = _authenticate["default"].hashPassword(password);
+
+        var user = new _user["default"]({
+          _id: new _mongoose["default"].Types.ObjectId(),
+          fullNames: fullNames,
+          phoneNumber: phoneNumber,
+          password: hashedPassword,
+          type: userType
         });
-      } else {
-        return res.status(400).json({
-          status: 400,
-          message: "Password incorrect"
+        user.save().then(function (result) {
+          console.log(result);
+        })["catch"](function (error) {
+          console.log(error);
         });
-      }
+        res.status(201).json({
+          status: 201,
+          message: 'You have been registed successfull',
+          createdUser: user,
+          token: _authenticate["default"].generateToken(user)
+        });
+      });
     }
   }, {
     key: "signin",
@@ -108,17 +87,7 @@ var UserController = /*#__PURE__*/function () {
           phoneNumber = _req$body2.phoneNumber,
           password = _req$body2.password;
 
-      var _validateUser$validat2 = _validateUser["default"].validateUserSignIn(_userBody["default"].userSigninBody(req)),
-          error = _validateUser$validat2.error;
-
-      if (error) {
-        return res.status(400).json({
-          status: 400,
-          message: error.details[0].message.replace(/"/g, '')
-        });
-      }
-
-      _users["default"].findOne({
+      _user["default"].findOne({
         phoneNumber: phoneNumber
       }).exec().then(function (doc) {
         console.log('From Database: ', doc);

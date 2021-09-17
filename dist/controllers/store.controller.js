@@ -7,13 +7,9 @@ exports["default"] = void 0;
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
-var _products = _interopRequireDefault(require("../models/db/products.model"));
+var _product = _interopRequireDefault(require("../models/product.model"));
 
-var _cartBody = _interopRequireDefault(require("../models/body/cartBody.model"));
-
-var _validateCart = _interopRequireDefault(require("../helpers/userValidations/validateCart"));
-
-var _users = _interopRequireDefault(require("../models/db/users.model"));
+var _user = _interopRequireDefault(require("../models/db/user.model"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -31,11 +27,11 @@ var StoreController = /*#__PURE__*/function () {
   _createClass(StoreController, null, [{
     key: "getAllProductsByCategories",
     value: function getAllProductsByCategories(req, res) {
-      _products["default"].find({
+      _product["default"].find({
         sellingApproved: true
       }, function (err, docs) {
         if (docs.length) {
-          _products["default"].find(function (err, docs) {
+          _product["default"].find(function (err, docs) {
             if (docs.length) {
               res.status(200).json({
                 status: 200,
@@ -62,7 +58,7 @@ var StoreController = /*#__PURE__*/function () {
     value: function getAllProductByName(req, res) {
       var name = req.query.name;
 
-      _products["default"].find({
+      _product["default"].find({
         productName: name
       }, function (err, docs) {
         if (docs) {
@@ -84,7 +80,7 @@ var StoreController = /*#__PURE__*/function () {
     value: function getOneProduct(req, res) {
       var product_id = req.body.product_id;
 
-      _products["default"].findById(product_id, function (err, docs) {
+      _product["default"].findById(product_id, function (err, docs) {
         if (docs) {
           res.status(200).json({
             status: 200,
@@ -109,17 +105,7 @@ var StoreController = /*#__PURE__*/function () {
           price = _req$body.price;
       var user_id = req.query.user_id;
 
-      var _validateCart$validat = _validateCart["default"].validateCart(_cartBody["default"].addToCartBodyModel(req)),
-          error = _validateCart$validat.error;
-
-      if (error) {
-        return res.status(400).json({
-          status: 400,
-          message: error.details[0].message.replace(/"/g, '')
-        });
-      }
-
-      _users["default"].findByIdAndUpdate(user_id, {
+      _user["default"].findByIdAndUpdate(user_id, {
         $push: {
           cart: {
             productId: productId,
@@ -141,7 +127,7 @@ var StoreController = /*#__PURE__*/function () {
     value: function getCartbyUserId(req, res) {
       var user_id = req.query.user_id;
 
-      _users["default"].findById(user_id, function (err, docs) {
+      _user["default"].findById(user_id, function (err, docs) {
         if (err) {
           res.status(500).json({
             status: 500,

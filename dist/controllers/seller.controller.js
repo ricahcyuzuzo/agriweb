@@ -7,11 +7,7 @@ exports["default"] = void 0;
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
-var _validateProduct = _interopRequireDefault(require("../helpers/userValidations/validateProduct"));
-
-var _productBody = _interopRequireDefault(require("../models/body/productBody.model"));
-
-var _products = _interopRequireDefault(require("../models/db/products.model"));
+var _product = _interopRequireDefault(require("../models/product.model"));
 
 var _users = _interopRequireDefault(require("../models/db/users.model"));
 
@@ -39,18 +35,7 @@ var SellerController = /*#__PURE__*/function () {
           sellerIdentifier = _req$body.sellerIdentifier,
           productCategory = _req$body.productCategory,
           image = _req$body.image;
-
-      var _validateProduct$vali = _validateProduct["default"].validateAddProduct(_productBody["default"].productsBodymodel(req)),
-          error = _validateProduct$vali.error;
-
-      if (error) {
-        return res.status(400).json({
-          status: 400,
-          message: error.details[0].message.replace(/"/g, '')
-        });
-      }
-
-      var product = new _products["default"]({
+      var product = new _product["default"]({
         _id: new _mongoose["default"].Types.ObjectId(),
         productName: productName,
         pricePerUnit: pricePerUnit,
@@ -77,7 +62,7 @@ var SellerController = /*#__PURE__*/function () {
     value: function getAllClientsProducts(req, res) {
       var phoneNumber = req.query.phoneNumber;
 
-      _products["default"].find({
+      _product["default"].find({
         sellerIdentifier: phoneNumber
       }, function (err, docs) {
         if (docs.length) {
@@ -98,7 +83,7 @@ var SellerController = /*#__PURE__*/function () {
     value: function getOneClientProducts(req, res) {
       var product_id = req.query.product_id;
 
-      _products["default"].findById(product_id).exec().then(function (doc) {
+      _product["default"].findById(product_id).exec().then(function (doc) {
         if (doc) {
           res.status(200).json({
             status: 200,

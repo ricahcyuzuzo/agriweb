@@ -1,5 +1,5 @@
 import Mongoose from 'mongoose';
-import Forum from '../models/db/forum.model';
+import Forum from '../models/forum.model';
 
 class ForumController {
     static AddTopic (req, res) {

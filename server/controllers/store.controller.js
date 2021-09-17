@@ -1,8 +1,6 @@
 import Mongoose from 'mongoose';
-import Product from '../models/db/products.model';
-import cartBodyModels from '../models/body/cartBody.model';
-import validateCart from '../helpers/userValidations/validateCart';
-import User from '../models/db/users.model';
+import Product from '../models/product.model';
+import User from '../models/db/user.model';
 
 class StoreController {
     static getAllProductsByCategories(req, res){
@@ -70,14 +68,6 @@ class StoreController {
     static addToCart(req, res){
         const { productId, productName, productUnit, price } = req.body;
         const { user_id } = req.query;
-        const { error } = validateCart.validateCart(cartBodyModels.addToCartBodyModel(req));
-
-        if(error){
-            return res.status(400).json({
-                status: 400,
-                message: error.details[0].message.replace(/"/g, '')
-            });
-        }
 
         User.findByIdAndUpdate(user_id, {$push: { cart: { productId: productId, productName: productName, productUnit: productUnit, price: price }}}, (err, docs) => {
             res.status(201).json({

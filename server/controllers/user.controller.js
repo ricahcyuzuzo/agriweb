@@ -1,8 +1,6 @@
 import Mongoose from "mongoose";
 import Authentication from "../helpers/authenticate";
-import validateUser from "../helpers/userValidations/validateUser";
-import UserBodyModels from "../models/body/userBody.model";
-import User from "../models/db/users.model";
+import User from "../models/user.model";
 
 class UserController{
     static getOne (req, res){
@@ -17,16 +15,6 @@ class UserController{
 
     static signup (req, res) {
         const { fullNames ,phoneNumber, password, userType } = req.body;
-        const { error } = validateUser.validateUserSignup(UserBodyModels.userSignupBody(req));
-
-        if (error) {
-            return res.status(400).json({
-                status: 400,
-                message: error.details[0].message.replace(/"/g, '')
-            });
-        }
-
-        if(validateUser.validatePassword(password) === true ){
             
                 User.find({ phoneNumber: phoneNumber}, (err, docs) => {
                     if(docs.length){
@@ -62,24 +50,10 @@ class UserController{
                     });
 
                 });
-        }else{
-            return res.status(400).json({
-                status: 400,
-                message: "Password incorrect"
-            });
-        }
     }
 
     static signin (req, res) {
         const { phoneNumber, password } = req.body;
-        const { error } = validateUser.validateUserSignIn(UserBodyModels.userSigninBody(req));
-
-        if (error) {
-            return res.status(400).json({
-                status: 400,
-                message: error.details[0].message.replace(/"/g, '')
-            });
-        }
 
         User.findOne({phoneNumber: phoneNumber})
             .exec()

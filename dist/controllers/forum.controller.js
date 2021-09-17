@@ -7,7 +7,7 @@ exports["default"] = void 0;
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
-var _forum = _interopRequireDefault(require("../models/db/forum.model"));
+var _forum = _interopRequireDefault(require("../models/forum.model"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
