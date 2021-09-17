@@ -1,5 +1,5 @@
-import Product from '../models/db/products.model';
-import User from '../models/db/users.model';
+import Product from '../models/product.model';
+import User from '../models/db/user.model';
 
 class AdminController {
     static approveProduct(req, res){

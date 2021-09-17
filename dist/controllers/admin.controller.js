@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _products = _interopRequireDefault(require("../models/db/products.model"));
+var _product = _interopRequireDefault(require("../models/product.model"));
 
-var _users = _interopRequireDefault(require("../models/db/users.model"));
+var _user = _interopRequireDefault(require("../models/db/user.model"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -28,7 +28,7 @@ var AdminController = /*#__PURE__*/function () {
       var sellingApproved = req.body.sellingApproved;
       var product_id = req.query.product_id;
 
-      _products["default"].findByIdAndUpdate(product_id, {
+      _product["default"].findByIdAndUpdate(product_id, {
         sellingApproved: sellingApproved
       }, function (err, docs) {
         if (err) {
@@ -46,7 +46,7 @@ var AdminController = /*#__PURE__*/function () {
     value: function getAllUsersByType(req, res) {
       var userType = req.query.userType;
 
-      _users["default"].find({
+      _user["default"].find({
         type: userType
       }, function (err, docs) {
         if (docs.length) {
@@ -66,7 +66,7 @@ var AdminController = /*#__PURE__*/function () {
   }, {
     key: "getAllProducts",
     value: function getAllProducts(req, res) {
-      _products["default"].find().exec().then(function (docs) {
+      _product["default"].find().exec().then(function (docs) {
         if (docs.length) {
           res.status(200).json({
             status: 200,

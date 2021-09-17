@@ -1,6 +1,6 @@
 import Mongoose from "mongoose";
 import Product from "../models/product.model";
-import User from "../models/users.model";
+import User from "../models/user.model";
 
 class SellerController {
     static addProduct (req, res) {

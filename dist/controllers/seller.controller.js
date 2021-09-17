@@ -9,7 +9,7 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _product = _interopRequireDefault(require("../models/product.model"));
 
-var _users = _interopRequireDefault(require("../models/users.model"));
+var _user = _interopRequireDefault(require("../models/user.model"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -107,7 +107,7 @@ var SellerController = /*#__PURE__*/function () {
     value: function getProfile(req, res) {
       var telephone = req.query.telephone;
 
-      _users["default"].find({
+      _user["default"].find({
         phoneNumber: telephone
       }, function (err, docs) {
         console.log(docs);
