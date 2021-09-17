@@ -1,6 +1,6 @@
 import Mongoose from 'mongoose';
 import Product from '../models/product.model';
-import User from '../models/db/user.model';
+import User from '../models/user.model';
 
 class StoreController {
     static getAllProductsByCategories(req, res){

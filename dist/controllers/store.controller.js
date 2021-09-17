@@ -9,7 +9,7 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _product = _interopRequireDefault(require("../models/product.model"));
 
-var _user = _interopRequireDefault(require("../models/db/user.model"));
+var _user = _interopRequireDefault(require("../models/user.model"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
