@@ -4,10 +4,8 @@ import bodyParser from 'body-parser';
 import dbConfig from './config/dbConnections.config';
 import userRoutes from './routes/user.route';
 import sellerRoutes from './routes/seller.route';
-import adminRoutes from './routes/admin.route';
-import storeRoutes from './routes/store.route';
-import TransactionRoutes from './routes/transaction.routes';
-import forumRoutes from './routes/forum.routes';
+import productRoutes from './routes/products.route';
+import forumRoutes from './routes/forum.route';
 
 const app = express();
 const port = process.env.PORT || 7000;
@@ -29,9 +27,7 @@ app.use((req, res, next) => {
 app.use('/api', forumRoutes);
 app.use('/api', userRoutes);
 app.use('/api', sellerRoutes);
-app.use('/api', adminRoutes);
-app.use('/api', storeRoutes);
-app.use('/api', TransactionRoutes);
+app.use('/api', productRoutes);
 
 app.get('/', (req, res) => {
     res.status(200).json({
