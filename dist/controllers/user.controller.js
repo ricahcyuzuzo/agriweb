@@ -29,6 +29,20 @@ var UserController = /*#__PURE__*/function () {
   }
 
   _createClass(UserController, null, [{
+    key: "getOne",
+    value: function getOne(req, res) {
+      var phone = req.query.phone;
+
+      _users["default"].findOne({
+        phoneNumber: phone
+      }, function (err, docs) {
+        res.status(200).json({
+          status: 200,
+          data: docs
+        });
+      });
+    }
+  }, {
     key: "signup",
     value: function signup(req, res) {
       var _req$body = req.body,

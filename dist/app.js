@@ -23,6 +23,8 @@ var _store = _interopRequireDefault(require("./routes/store.route"));
 
 var _transaction = _interopRequireDefault(require("./routes/transaction.routes"));
 
+var _forum = _interopRequireDefault(require("./routes/forum.routes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
@@ -45,6 +47,7 @@ app.use(function (req, res, next) {
 
   return next();
 });
+app.use('/api', _forum["default"]);
 app.use('/api', _user["default"]);
 app.use('/api', _seller["default"]);
 app.use('/api', _admin["default"]);

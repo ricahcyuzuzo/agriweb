@@ -125,6 +125,8 @@ var SellerController = /*#__PURE__*/function () {
       _users["default"].find({
         phoneNumber: telephone
       }, function (err, docs) {
+        console.log(docs);
+
         if (docs.length) {
           res.status(200).json({
             status: 200,
