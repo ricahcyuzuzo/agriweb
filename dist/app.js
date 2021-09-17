@@ -17,13 +17,9 @@ var _user = _interopRequireDefault(require("./routes/user.route"));
 
 var _seller = _interopRequireDefault(require("./routes/seller.route"));
 
-var _admin = _interopRequireDefault(require("./routes/admin.route"));
+var _products = _interopRequireDefault(require("./routes/products.route"));
 
-var _store = _interopRequireDefault(require("./routes/store.route"));
-
-var _transaction = _interopRequireDefault(require("./routes/transaction.routes"));
-
-var _forum = _interopRequireDefault(require("./routes/forum.routes"));
+var _forum = _interopRequireDefault(require("./routes/forum.route"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -50,9 +46,7 @@ app.use(function (req, res, next) {
 app.use('/api', _forum["default"]);
 app.use('/api', _user["default"]);
 app.use('/api', _seller["default"]);
-app.use('/api', _admin["default"]);
-app.use('/api', _store["default"]);
-app.use('/api', _transaction["default"]);
+app.use('/api', _products["default"]);
 app.get('/', function (req, res) {
   res.status(200).json({
     message: 'Welcome on Agri shop api',
