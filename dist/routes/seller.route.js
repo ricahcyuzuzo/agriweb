@@ -12,6 +12,6 @@ var _seller = _interopRequireDefault(require("../controllers/seller.controller")
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var routes = (0, _express["default"])();
-routes.post('/seller_products', _seller["default"].getAllClientsProducts);
+routes.get('/seller_products', _seller["default"].getAllClientsProducts);
 var _default = routes;
 exports["default"] = _default;

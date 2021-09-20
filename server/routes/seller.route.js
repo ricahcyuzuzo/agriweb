@@ -3,6 +3,6 @@ import SellerController from "../controllers/seller.controller";
 
 const routes = Router();
 
-routes.post('/seller_products', SellerController.getAllClientsProducts);
+routes.get('/seller_products', SellerController.getAllClientsProducts);
 
 export default routes;
