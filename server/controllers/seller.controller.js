@@ -52,16 +52,12 @@ class SellerController {
 
     static deleteProduct(req, res) {
         const { product_id } = req.query;
-
-        console.log(product_id);
-
-        // Product.deleteOne({_id: product_id})
-        //     .then(() => {
-        //         res.status(201).json({
-        //             status: 201,
-        //             message: "Product Deleted"
-        //         })
-        //     })
+        Product.deleteOne({_id: product_id})
+            .then(() => {
+                res.json({
+                    message: "Product Deleted!"
+                })
+            })
     }
 
     static getOneClientProducts(req, res){

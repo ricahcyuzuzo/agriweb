@@ -81,13 +81,14 @@ var SellerController = /*#__PURE__*/function () {
     key: "deleteProduct",
     value: function deleteProduct(req, res) {
       var product_id = req.query.product_id;
-      console.log(product_id); // Product.deleteOne({_id: product_id})
-      //     .then(() => {
-      //         res.status(201).json({
-      //             status: 201,
-      //             message: "Product Deleted"
-      //         })
-      //     })
+
+      _product["default"].deleteOne({
+        _id: product_id
+      }).then(function () {
+        res.json({
+          message: "Product Deleted!"
+        });
+      });
     }
   }, {
     key: "getOneClientProducts",
