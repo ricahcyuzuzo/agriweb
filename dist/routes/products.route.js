@@ -16,5 +16,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var routes = (0, _express["default"])();
 routes.post('/product', _seller["default"].addProduct);
 routes.get('/products_approved', _store["default"].getAllProductsByCategories);
+routes["delete"]('/delete', _seller["default"].deleteProduct);
 var _default = routes;
 exports["default"] = _default;

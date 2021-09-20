@@ -114,10 +114,10 @@ var UserController = /*#__PURE__*/function () {
             message: 'Wrong Phone number or password'
           });
         }
-      })["catch"](function (err) {
-        res.status(500).json({
-          status: 500,
-          error: err
+      })["catch"](function () {
+        res.status(401).json({
+          status: 401,
+          message: 'Wrong Phone number or password'
         });
       });
     }

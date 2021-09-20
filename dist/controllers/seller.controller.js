@@ -43,7 +43,6 @@ var SellerController = /*#__PURE__*/function () {
         description: description,
         sellerIdentifier: sellerIdentifier,
         sellingApproved: true,
-        productCategory: productCategory,
         image: image
       });
       product.save().then(function (result) {
@@ -77,6 +76,18 @@ var SellerController = /*#__PURE__*/function () {
           });
         }
       });
+    }
+  }, {
+    key: "deleteProduct",
+    value: function deleteProduct(req, res) {
+      var product_id = req.query.product_id;
+      console.log(product_id); // Product.deleteOne({_id: product_id})
+      //     .then(() => {
+      //         res.status(201).json({
+      //             status: 201,
+      //             message: "Product Deleted"
+      //         })
+      //     })
     }
   }, {
     key: "getOneClientProducts",

@@ -16,7 +16,6 @@ var validateAddProduct = function validateAddProduct(user) {
     availableQuantity: _joi["default"].string().required(),
     description: _joi["default"].string().required(),
     sellerIdentifier: _joi["default"].string().required(),
-    productCategory: _joi["default"].string().required(),
     image: _joi["default"].string().required()
   });
 

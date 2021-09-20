@@ -17,7 +17,6 @@ var usersSchema = _mongoose["default"].Schema({
   description: String,
   sellerIdentifier: String,
   sellingApproved: Boolean,
-  productCategory: String,
   image: String
 });
 
