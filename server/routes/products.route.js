@@ -6,6 +6,6 @@ const routes = Router();
 
 routes.post('/product', SellerController.addProduct);
 routes.get('/products_approved', StoreController.getAllProductsByCategories);
-routes.delete('/product', SellerController.deleteProduct);
+routes.delete('/delete', SellerController.deleteProduct);
 
 export default routes;
