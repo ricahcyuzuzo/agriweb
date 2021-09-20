@@ -81,10 +81,10 @@ class UserController{
                     });
                }
             })
-            .catch((err) => {
-                res.status(500).json({
-                  status: 500,
-                  error: err,
+            .catch(() => {
+                res.status(401).json({
+                    status: 401,
+                    message: 'Wrong Phone number or password'
                 });
             });
     }
