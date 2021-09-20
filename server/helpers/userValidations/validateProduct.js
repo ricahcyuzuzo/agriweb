@@ -7,7 +7,6 @@ const validateAddProduct = (user) => {
         availableQuantity: Hapi.string().required(),
         description: Hapi.string().required(),
         sellerIdentifier: Hapi.string().required(),
-        productCategory: Hapi.string().required(),
         image: Hapi.string().required(),
     });
 

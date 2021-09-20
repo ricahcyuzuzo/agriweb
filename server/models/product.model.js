@@ -8,7 +8,6 @@ const usersSchema = mongoose.Schema({
     description: String,
     sellerIdentifier: String,
     sellingApproved: Boolean,
-    productCategory: String,
     image: String
 });
 

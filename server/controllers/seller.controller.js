@@ -14,7 +14,6 @@ class SellerController {
             description: description,
             sellerIdentifier: sellerIdentifier,
             sellingApproved: true,
-            productCategory: productCategory,
             image: image
         });
 
@@ -52,7 +51,7 @@ class SellerController {
     }
 
     static deleteProduct(req, res) {
-        const { product_id } = req.body;
+        const { product_id } = req.query;
 
         Product.deleteOne({_id: product_id})
             .then(() => {
