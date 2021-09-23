@@ -5,7 +5,16 @@ const usersSchema = mongoose.Schema({
     fullNames: String,
     phoneNumber: String,
     password: String,
-    type: String
+    type: String,
+    image: String,
+    idNumber: String,
+    address: [{
+        province: String,
+        district: String,
+        sector: String,
+        cell: String,
+        village: String,
+    }]
 });
 
 const userModel = mongoose.model('users', usersSchema);

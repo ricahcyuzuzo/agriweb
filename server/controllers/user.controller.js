@@ -88,6 +88,21 @@ class UserController{
                 });
             });
     }
+
+    static updateProfile (req, res){
+        const {phone} = req.query;
+        const {idNumber, image, address} = req.body;
+        User.findOneAndUpdate({phoneNumber: phone}, {idNumber: idNumber, image: image, address: address})
+            .then(() => {
+                res.status(201).json({
+                    status: 201,
+                    message: 'Profile Updated'
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 }
 
 export default UserController;

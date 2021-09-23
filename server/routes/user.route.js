@@ -7,5 +7,6 @@ const routes = Router();
 routes.post('/login', UserController.signin);
 routes.post('/user', UserController.signup);
 routes.get('/users', SellerController.getProfile);
+routes.patch('/profile', UserController.updateProfile);
 
 export default routes;

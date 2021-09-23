@@ -121,6 +121,30 @@ var UserController = /*#__PURE__*/function () {
         });
       });
     }
+  }, {
+    key: "updateProfile",
+    value: function updateProfile(req, res) {
+      var phone = req.query.phone;
+      var _req$body3 = req.body,
+          idNumber = _req$body3.idNumber,
+          image = _req$body3.image,
+          address = _req$body3.address;
+
+      _user["default"].findOneAndUpdate({
+        phoneNumber: phone
+      }, {
+        idNumber: idNumber,
+        image: image,
+        address: address
+      }).then(function () {
+        res.status(201).json({
+          status: 201,
+          message: 'Profile Updated'
+        });
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }]);
 
   return UserController;

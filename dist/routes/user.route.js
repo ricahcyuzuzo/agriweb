@@ -17,5 +17,6 @@ var routes = (0, _express["default"])();
 routes.post('/login', _user["default"].signin);
 routes.post('/user', _user["default"].signup);
 routes.get('/users', _seller["default"].getProfile);
+routes.patch('/profile', _user["default"].updateProfile);
 var _default = routes;
 exports["default"] = _default;
