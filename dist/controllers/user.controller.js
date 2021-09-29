@@ -11,6 +11,8 @@ var _authenticate = _interopRequireDefault(require("../helpers/authenticate"));
 
 var _user = _interopRequireDefault(require("../models/user.model"));
 
+var _message = _interopRequireDefault(require("../models/message.model"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -135,7 +137,13 @@ var UserController = /*#__PURE__*/function () {
       }, {
         idNumber: idNumber,
         image: image,
-        address: address
+        address: {
+          province: address.province,
+          district: address.district,
+          sector: address.sector,
+          cell: address.cell,
+          village: address.village
+        }
       }).then(function () {
         res.status(201).json({
           status: 201,
@@ -143,6 +151,48 @@ var UserController = /*#__PURE__*/function () {
         });
       })["catch"](function (err) {
         console.log(err);
+      });
+    }
+  }, {
+    key: "contactSeller",
+    value: function contactSeller(req, res) {
+      var phone = req.query.phone;
+      var _req$body4 = req.body,
+          clientPhone = _req$body4.clientPhone,
+          names = _req$body4.names,
+          message = _req$body4.message;
+      var messages = new _message["default"]({
+        _id: new _mongoose["default"].Types.ObjectId(),
+        name: names,
+        clientPhone: clientPhone,
+        sellerPhone: phone,
+        message: message
+      });
+      messages.save().then(function () {
+        res.status(201).json({
+          status: 201,
+          message: 'Message sent successfully'
+        });
+      })["catch"](function (error) {
+        res.status(500).json({
+          status: 500,
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "getAllMessages",
+    value: function getAllMessages(req, res) {
+      var phone = req.query.phone;
+      console.log(phone);
+
+      _message["default"].find({
+        sellerPhone: phone
+      }, function (err, docs) {
+        res.status(200).json({
+          status: 200,
+          data: docs
+        });
       });
     }
   }]);

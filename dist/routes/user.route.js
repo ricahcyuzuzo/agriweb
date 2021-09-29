@@ -18,5 +18,7 @@ routes.post('/login', _user["default"].signin);
 routes.post('/user', _user["default"].signup);
 routes.get('/users', _seller["default"].getProfile);
 routes.patch('/profile', _user["default"].updateProfile);
+routes.post('/message', _user["default"].contactSeller);
+routes.get('/message', _user["default"].getAllMessages);
 var _default = routes;
 exports["default"] = _default;

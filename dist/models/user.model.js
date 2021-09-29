@@ -17,13 +17,13 @@ var usersSchema = _mongoose["default"].Schema({
   type: String,
   image: String,
   idNumber: String,
-  address: [{
+  address: {
     province: String,
     district: String,
     sector: String,
     cell: String,
     village: String
-  }]
+  }
 });
 
 var userModel = _mongoose["default"].model('users', usersSchema);

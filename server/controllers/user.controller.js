@@ -1,6 +1,7 @@
 import Mongoose from "mongoose";
 import Authentication from "../helpers/authenticate";
 import User from "../models/user.model";
+import Message from '../models/message.model';
 
 class UserController{
     static getOne (req, res){
@@ -92,7 +93,13 @@ class UserController{
     static updateProfile (req, res){
         const {phone} = req.query;
         const {idNumber, image, address} = req.body;
-        User.findOneAndUpdate({phoneNumber: phone}, {idNumber: idNumber, image: image, address: address})
+        User.findOneAndUpdate({phoneNumber: phone}, {idNumber: idNumber, image: image, address: {
+            province: address.province,
+            district: address.district,
+            sector: address.sector,
+            cell: address.cell,
+            village: address.village
+        }})
             .then(() => {
                 res.status(201).json({
                     status: 201,
@@ -102,6 +109,45 @@ class UserController{
             .catch(err => {
                 console.log(err);
             });
+    }
+
+    static contactSeller (req, res){
+        const {phone} = req.query;
+        const {clientPhone, names, message} = req.body;   
+        
+        const messages = new Message({
+            _id: new Mongoose.Types.ObjectId(),
+            name: names,
+            clientPhone: clientPhone,
+            sellerPhone: phone,
+            message: message,
+        });
+
+        messages
+            .save()
+            .then(() => {
+                res.status(201).json({
+                    status: 201,
+                    message: 'Message sent successfully'
+                })
+            })
+            .catch((error) => {
+                res.status(500).json({
+                    status: 500,
+                    error: error
+                })
+            })
+    }
+
+    static getAllMessages (req, res){
+        const { phone } = req.query;
+        console.log(phone)
+        Message.find({sellerPhone: phone}, (err, docs) => {
+            res.status(200).json({
+                status: 200,
+                data: docs
+            });
+        });
     }
 }
 
