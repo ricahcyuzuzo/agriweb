@@ -21,6 +21,8 @@ var _products = _interopRequireDefault(require("./routes/products.route"));
 
 var _forum = _interopRequireDefault(require("./routes/forum.route"));
 
+var _admin = _interopRequireDefault(require("./routes/admin.routes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
@@ -47,6 +49,7 @@ app.use('/api', _forum["default"]);
 app.use('/api', _user["default"]);
 app.use('/api', _seller["default"]);
 app.use('/api', _products["default"]);
+app.use('/api', _admin["default"]);
 app.get('/', function (req, res) {
   res.status(200).json({
     message: 'Welcome on Agri shop api',

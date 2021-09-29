@@ -44,11 +44,7 @@ var AdminController = /*#__PURE__*/function () {
   }, {
     key: "getAllUsersByType",
     value: function getAllUsersByType(req, res) {
-      var userType = req.query.userType;
-
-      _user["default"].find({
-        type: userType
-      }, function (err, docs) {
+      _user["default"].find(function (err, docs) {
         if (docs.length) {
           res.status(200).json({
             status: 200,

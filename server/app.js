@@ -6,6 +6,7 @@ import userRoutes from './routes/user.route';
 import sellerRoutes from './routes/seller.route';
 import productRoutes from './routes/products.route';
 import forumRoutes from './routes/forum.route';
+import adminRoutes from './routes/admin.routes';
 
 const app = express();
 const port = process.env.PORT || 7000;
@@ -28,6 +29,7 @@ app.use('/api', forumRoutes);
 app.use('/api', userRoutes);
 app.use('/api', sellerRoutes);
 app.use('/api', productRoutes);
+app.use('/api', adminRoutes);
 
 app.get('/', (req, res) => {
     res.status(200).json({

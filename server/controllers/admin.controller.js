@@ -20,8 +20,7 @@ class AdminController {
     }
 
     static getAllUsersByType(req, res){
-        const { userType } = req.query;
-        User.find({ type: userType }, (err, docs) => {
+        User.find((err, docs) => {
             if(docs.length){
                 res.status(200).json({
                     status: 200,
