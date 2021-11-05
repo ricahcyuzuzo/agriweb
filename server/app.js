@@ -48,4 +48,4 @@ app.use((req, res) => {
 app.listen(port, console.log(`The app is running at 127.0.0.1:${port}`));
 dbConfig();
 
-export default app;
+export default app

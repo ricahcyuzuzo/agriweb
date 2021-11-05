@@ -2,12 +2,17 @@
   "name": "agriweb",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec babel-node ./server/app.js",
     "build": "babel server --out-dir dist",
-    "start": "node --require @babel/polyfill dist/app.js "
+    "starti": "node --require @babel/polyfill dist/app.js ",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
@@ -24,14 +29,20 @@
     "mongoose": "^5.12.3",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.2",
-    "password-validator": "^5.0.3"
+    "password-validator": "^5.0.3",
+    "firebase-admin": "^9.8.0",
+    "firebase-functions": "^3.14.1"
+  },
+  "engines": {
+    "node": "14"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
     "@babel/node": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
-    "@babel/register": "^7.8.3"
+    "@babel/register": "^7.8.3",
+    "firebase-functions-test": "^0.2.0"
   },
   "keywords": [],
   "author": "",
