@@ -7,12 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec babel-node ./server/app.js",
     "build": "babel server --out-dir dist",
-    "starti": "node --require @babel/polyfill dist/app.js ",
-    "serve": "firebase emulators:start --only functions",
-    "shell": "firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "start": "node --require @babel/polyfill dist/app.js "
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
