@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const mongoConnect = () => {
-    mongoose.connect(`mongodb://a78776c4adb7d1da05a68376ac6bff10:${encodeURIComponent('Betterlife123!')}@11a.mongo.evennode.com:27018,11b.mongo.evennode.com:27018/a78776c4adb7d1da05a68376ac6bff10?replicaSet=eu-11`, {
+    mongoose.connect(`mongodb+srv://farmatalk:Betterlife123@cluster0.tdq0x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
         useUnifiedTopology: true,
         useNewUrlParser: true
     });
