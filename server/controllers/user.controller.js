@@ -67,7 +67,7 @@ class UserController{
                             status: 201,
                             message: 'Logged In successful',
                             token: Authentication.generateToken(doc),
-                            phone: doc.phoneNumber
+                            user: doc
                         });
                     }else{
                         res.status(401).json({
